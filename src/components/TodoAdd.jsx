@@ -7,7 +7,7 @@ const TodoAdd = () => {
         placeholder="Enter your task"
       />
       <button className="bg-blue-400 px-4 py-2 text-white rounded cursor-pointer hover:opacity-85 transition-colors">
-        Add test2
+        Add
       </button>
     </div>
   );
