@@ -25,7 +25,6 @@ const TodoAdd = ({addNewTodo}) => {
       >
         Add
       </button>
-      <p>My value is: {valueInput}</p>
     </div>
   );
 };

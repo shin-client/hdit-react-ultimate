@@ -19,9 +19,7 @@ const TodoList = ({ todoList, setTodoList }) => {
                     <FaTrash
                       className="text-red-500"
                       onClick={() => {
-                        setTodoList(
-                          todoList.filter((td) => td.id !== todo.id)
-                        );
+                        setTodoList(todoList.filter((td) => td.id !== todo.id));
                       }}
                     />
                   </div>
@@ -34,12 +32,18 @@ const TodoList = ({ todoList, setTodoList }) => {
           })}
         </tbody>
       </table>
-      <button
-        className="text-red-500 font-medium px-5 py-3 bg-gray-100 hover:bg-red-100 transition-colors rounded-lg cursor-pointer"
-        onClick={() => {setTodoList([])}}
-      >
-        Delete All
-      </button>
+      {todoList.length !== 0 ? (
+        <button
+          className="text-red-500 font-medium px-5 py-3 bg-gray-100 hover:bg-red-100 transition-colors rounded-lg cursor-pointer"
+          onClick={() => {
+            setTodoList([]);
+          }}
+        >
+          Delete All
+        </button>
+      ) : (
+        ""
+      )}
     </>
   );
 };
