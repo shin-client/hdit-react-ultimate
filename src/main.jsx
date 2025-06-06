@@ -6,9 +6,9 @@ import { createBrowserRouter, RouterProvider } from "react-router";
 import LoginPage from "./pages/LoginPage.jsx";
 import RegisterPage from "./pages/RegisterPage.jsx";
 import UsersPage from "./pages/UsersPage.jsx";
-import ProductsPage from "./pages/ProductsPage.jsx";
 import Todo from "./components/Todo.jsx";
 import ErrorPage from "./pages/ErrorPage.jsx";
+import BooksPage from "./pages/BooksPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -17,7 +17,7 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <Todo /> },
       { path: "/users", element: <UsersPage /> },
-      { path: "/products", element: <ProductsPage /> },
+      { path: "/books", element: <BooksPage /> },
     ],
   },
   { path: "/login", element: <LoginPage /> },
