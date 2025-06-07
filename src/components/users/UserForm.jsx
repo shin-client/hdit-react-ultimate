@@ -5,14 +5,15 @@ import {
   PhoneOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import { Button, Input, notification } from "antd";
+import { Button, Input, Modal, notification } from "antd";
 import { useState } from "react";
 
-const UserForm = () => {
+const UserForm = ({ fetchData }) => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [api, contextHolder] = notification.useNotification();
   const openNotification = (type, message, desc) => {
@@ -30,10 +31,8 @@ const UserForm = () => {
         "Create user success",
         "Go to login page and login to your account",
       );
-      // setFullName("");
-      // setEmail("");
-      // setPassword("");
-      // setPhone("");
+      resetAndCloseModal();
+      fetchData();
     } else {
       openNotification(
         "error",
@@ -43,36 +42,60 @@ const UserForm = () => {
     }
   };
 
+  const resetAndCloseModal = () => {
+    setFullName("");
+    setEmail("");
+    setPassword("");
+    setPhone("");
+    setIsModalOpen(false);
+  };
+
   return (
-    <div className="mx-auto flex max-w-xs flex-col gap-4">
-      <Input
-        placeholder="Full name"
-        prefix={<UserOutlined className="text-black/25!" />}
-        value={fullName}
-        onChange={(e) => setFullName(e.target.value)}
-      />
-      <Input
-        placeholder="Email"
-        prefix={<MailOutlined className="text-black/25!" />}
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <Input.Password
-        placeholder="Password"
-        prefix={<LockOutlined className="text-black/25!" />}
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <Input
-        placeholder="Phone number"
-        prefix={<PhoneOutlined className="text-black/25!" />}
-        value={phone}
-        onChange={(e) => setPhone(e.target.value)}
-      />
-      {contextHolder}
-      <Button type="primary" onClick={handleCreateUser}>
-        Create user
-      </Button>
+    <div className="mx-auto">
+      <div className="flex justify-between">
+        <h3 className="text-2xl font-bold">Table users</h3>
+        {contextHolder}
+        <Button type="primary" onClick={() => setIsModalOpen(true)}>
+          Create user
+        </Button>
+        <Modal
+          title="Create User"
+          closable={{ "aria-label": "Custom Close Button" }}
+          open={isModalOpen}
+          onOk={() => handleCreateUser()}
+          onCancel={() => resetAndCloseModal()}
+          okText={"Create"}
+          maskClosable={false}
+          centered
+        >
+          <div className="flex flex-col gap-4">
+            <Input
+              placeholder="Full name"
+              prefix={<UserOutlined className="text-black/25!" />}
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
+            />
+            <Input
+              placeholder="Email"
+              prefix={<MailOutlined className="text-black/25!" />}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <Input.Password
+              placeholder="Password"
+              prefix={<LockOutlined className="text-black/25!" />}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <Input
+              placeholder="Phone number"
+              prefix={<PhoneOutlined className="text-black/25!" />}
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+            />
+          </div>
+        </Modal>
+      </div>
     </div>
   );
 };
