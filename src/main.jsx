@@ -1,14 +1,15 @@
 import { StrictMode } from "react";
+import "@ant-design/v5-patch-for-react-19";
 import { createRoot } from "react-dom/client";
-import "./index.css";
-import App from "./App.jsx";
+import "@/index.css";
+import App from "@/App";
 import { createBrowserRouter, RouterProvider } from "react-router";
-import LoginPage from "./pages/LoginPage.jsx";
-import RegisterPage from "./pages/RegisterPage.jsx";
-import UsersPage from "./pages/UsersPage.jsx";
-import Todo from "./components/Todo.jsx";
-import ErrorPage from "./pages/ErrorPage.jsx";
-import BooksPage from "./pages/BooksPage.jsx";
+import ErrorPage from "@pages/ErrorPage";
+import Todo from "@components/Todo";
+import UsersPage from "@pages/UsersPage";
+import BooksPage from "@pages/BooksPage";
+import LoginPage from "@pages/LoginPage";
+import RegisterPage from "@pages/RegisterPage";
 
 const router = createBrowserRouter([
   {
@@ -27,5 +28,5 @@ const router = createBrowserRouter([
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <RouterProvider router={router} />
-  </StrictMode>
+  </StrictMode>,
 );
