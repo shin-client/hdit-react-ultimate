@@ -5,6 +5,7 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 import { Button, Input } from "antd";
+import axios from "axios";
 import { useState } from "react";
 
 const UserForm = () => {
@@ -12,18 +13,16 @@ const UserForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [userList, setUserList] = useState([]);
 
   const handleCreateUser = () => {
-    setUserList([
-      ...userList,
-      {
-        fullName: fullName,
-        email: email,
-        password: password,
-        phoneNumber: phoneNumber,
-      },
-    ]);
+    const API = "http://localhost:8080/api/v1/user";
+    const data = {
+      fullName: fullName,
+      email: email,
+      password: password,
+      phone: phoneNumber,
+    };
+    axios.post(API, data);
     setFullName("");
     setEmail("");
     setPassword("");
