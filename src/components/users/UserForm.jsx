@@ -1,32 +1,34 @@
+import { createUserAPI } from "@/services/apiService";
 import {
   LockOutlined,
   MailOutlined,
   PhoneOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import { Button, Input } from "antd";
-import axios from "axios";
+import { Button, Input, notification } from "antd";
 import { useState } from "react";
 
 const UserForm = () => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
+  const [phone, setPhone] = useState("");
 
-  const handleCreateUser = () => {
-    const API = "http://localhost:8080/api/v1/user";
-    const data = {
-      fullName: fullName,
-      email: email,
-      password: password,
-      phone: phoneNumber,
-    };
-    axios.post(API, data);
-    setFullName("");
-    setEmail("");
-    setPassword("");
-    setPhoneNumber("");
+  const [api, contextHolder] = notification.useNotification();
+  const openNotification = (type) => {
+    api[type]({
+      message: "Create user",
+      description: "Go to login page and login to your account",
+    });
+  };
+
+  const handleCreateUser = async () => {
+    const res = await createUserAPI(fullName, email, password, phone);
+    if (res?.data) openNotification("success");
+    // setFullName("");
+    // setEmail("");
+    // setPassword("");
+    // setPhone("");
   };
 
   return (
@@ -52,9 +54,10 @@ const UserForm = () => {
       <Input
         placeholder="Phone number"
         prefix={<PhoneOutlined className="text-black/25!" />}
-        value={phoneNumber}
-        onChange={(e) => setPhoneNumber(e.target.value)}
+        value={phone}
+        onChange={(e) => setPhone(e.target.value)}
       />
+      {contextHolder}
       <Button type="primary" onClick={handleCreateUser}>
         Create user
       </Button>
