@@ -15,20 +15,32 @@ const UserForm = () => {
   const [phone, setPhone] = useState("");
 
   const [api, contextHolder] = notification.useNotification();
-  const openNotification = (type) => {
+  const openNotification = (type, message, desc) => {
     api[type]({
-      message: "Create user",
-      description: "Go to login page and login to your account",
+      message: message,
+      description: desc,
     });
   };
 
   const handleCreateUser = async () => {
     const res = await createUserAPI(fullName, email, password, phone);
-    if (res?.data) openNotification("success");
-    // setFullName("");
-    // setEmail("");
-    // setPassword("");
-    // setPhone("");
+    if (res?.data) {
+      openNotification(
+        "success",
+        "Create user success",
+        "Go to login page and login to your account",
+      );
+      // setFullName("");
+      // setEmail("");
+      // setPassword("");
+      // setPhone("");
+    } else {
+      openNotification(
+        "error",
+        "Create user error",
+        JSON.stringify(res.message),
+      );
+    }
   };
 
   return (
