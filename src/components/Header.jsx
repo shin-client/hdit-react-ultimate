@@ -8,7 +8,7 @@ const NAVLIST = [
 
 const Header = () => {
   return (
-    <header className="sticky top-0">
+    <header className="sticky top-0 z-999 shadow-sm mb-4">
       <nav className="bg-white border-gray-200 px-6 py-2.5 flex justify-between items-center max-w-screen-xl mx-auto">
         <Link to="/" className="flex justify-center items-center">
           <img
