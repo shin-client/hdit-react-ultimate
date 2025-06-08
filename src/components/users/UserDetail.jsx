@@ -24,14 +24,14 @@ const UserDetail = ({
           dataSource={data}
           renderItem={(item) => (
             <List.Item>
-              <Typography.Text>
+              <div>
                 <Typography.Text className="mr-2" strong>
                   {item.title}:
                 </Typography.Text>
-                <div>
+                <Typography.Text copyable>
                   {item.id || item.fullName || item.email || item.phone}
-                </div>
-              </Typography.Text>
+                </Typography.Text>
+              </div>
             </List.Item>
           )}
         />
