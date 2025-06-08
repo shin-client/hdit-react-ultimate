@@ -27,11 +27,7 @@ const UserForm = ({ fetchData }) => {
       resetAndCloseModal();
       fetchData();
     } else {
-      openNotification(
-        "error",
-        "Create user error",
-        JSON.stringify(res.message),
-      );
+      openNotification("error", "Create user error", res?.message.join("; "));
     }
   };
 
