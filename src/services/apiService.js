@@ -21,9 +21,14 @@ const updateUserAPI = (id, fullName, phone) => {
   return axios.put(URL, data);
 };
 
+const deleteUserAPI = (id) => {
+  const URL = `/api/v1/user/${id}`;
+  return axios.delete(URL);
+};
+
 const fetchAllUserAPI = () => {
   const URL = "/api/v1/user";
   return axios.get(URL);
 };
 
-export { createUserAPI, updateUserAPI, fetchAllUserAPI };
+export { createUserAPI, updateUserAPI, fetchAllUserAPI, deleteUserAPI };

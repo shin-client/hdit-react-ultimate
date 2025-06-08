@@ -1,11 +1,12 @@
-import { createUserAPI } from "@/services/apiService";
+import { createUserAPI } from "@services/apiService";
+import { contextHolder, openNotification } from "@libs/utils";
 import {
   LockOutlined,
   MailOutlined,
   PhoneOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import { Button, Input, Modal, notification } from "antd";
+import { Button, Input, Modal } from "antd";
 import { useState } from "react";
 
 const UserForm = ({ fetchData }) => {
@@ -14,14 +15,6 @@ const UserForm = ({ fetchData }) => {
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const [api, contextHolder] = notification.useNotification();
-  const openNotification = (type, message, desc) => {
-    api[type]({
-      message: message,
-      description: desc,
-    });
-  };
 
   const handleCreateUser = async () => {
     const res = await createUserAPI(fullName, email, password, phone);

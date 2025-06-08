@@ -1,10 +1,11 @@
-import { updateUserAPI } from "@/services/apiService";
+import { contextHolder, openNotification } from "@/libs/utils";
+import { updateUserAPI } from "@services/apiService";
 import {
   LockOutlined,
   PhoneOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import { Input, Modal, notification } from "antd";
+import { Input, Modal } from "antd";
 import { useEffect, useState } from "react";
 
 const UserUpdateModal = ({
@@ -17,14 +18,6 @@ const UserUpdateModal = ({
   const [id, setId] = useState("");
   const [fullName, setFullName] = useState("");
   const [phone, setPhone] = useState("");
-
-  const [api, contextHolder] = notification.useNotification();
-  const openNotification = (type, message, desc) => {
-    api[type]({
-      message: message,
-      description: desc,
-    });
-  };
 
   useEffect(() => {
     if (currUserData) {
