@@ -1,0 +1,42 @@
+import { Drawer, List, Typography } from "antd";
+
+const UserDetail = ({
+  isUserDetailOpen,
+  setIsUserDetailOpen,
+  currUserData,
+}) => {
+  const data = [
+    { title: "ID", id: currUserData._id },
+    { title: "Full Name", fullName: currUserData.fullName },
+    { title: "Email", email: currUserData.email },
+    { title: "Phone Number", phone: currUserData.phone },
+  ];
+
+  return (
+    <>
+      <Drawer
+        title="User Detail"
+        onClose={() => setIsUserDetailOpen(false)}
+        open={isUserDetailOpen}
+      >
+        <List
+          bordered
+          dataSource={data}
+          renderItem={(item) => (
+            <List.Item>
+              <Typography.Text>
+                <Typography.Text className="mr-2" strong>
+                  {item.title}:
+                </Typography.Text>
+                <div>
+                  {item.id || item.fullName || item.email || item.phone}
+                </div>
+              </Typography.Text>
+            </List.Item>
+          )}
+        />
+      </Drawer>
+    </>
+  );
+};
+export default UserDetail;

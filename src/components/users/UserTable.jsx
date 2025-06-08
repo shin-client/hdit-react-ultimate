@@ -2,16 +2,27 @@ import { Space, Table } from "antd";
 import UserUpdateModal from "./UserUpdateModal";
 import { useState } from "react";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import UserDetail from "./UserDetail";
 
 const UserTable = ({ userData, fetchData }) => {
   const [isModalUpdateOpen, setIsModalUpdateOpen] = useState(false);
   const [currUserData, setCurrUserData] = useState();
 
+  const [isUserDetailOpen, setIsUserDetailOpen] = useState(false);
+
   const columns = [
     {
       title: "ID",
-      dataIndex: "_id",
-      render: (id) => <a>{id}</a>,
+      render: (record) => (
+        <a
+          onClick={() => {
+            setIsUserDetailOpen(true);
+            setCurrUserData(record);
+          }}
+        >
+          {record._id}
+        </a>
+      ),
     },
     {
       title: "Full Name",
@@ -23,7 +34,6 @@ const UserTable = ({ userData, fetchData }) => {
     },
     {
       title: "Action",
-      key: "action",
       render: (record) => (
         <Space size="middle">
           <EditOutlined
@@ -48,6 +58,11 @@ const UserTable = ({ userData, fetchData }) => {
         currUserData={currUserData}
         setCurrUserData={setCurrUserData}
         fetchData={fetchData}
+      />
+      <UserDetail
+        isUserDetailOpen={isUserDetailOpen}
+        setIsUserDetailOpen={setIsUserDetailOpen}
+        currUserData={currUserData || []}
       />
     </>
   );
