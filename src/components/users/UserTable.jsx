@@ -1,7 +1,12 @@
-import { Table } from "antd";
+import { Space, Table } from "antd";
 import UserUpdateModal from "./UserUpdateModal";
+import { useState } from "react";
+import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 
 const UserTable = ({ userData }) => {
+  const [isModalUpdateOpen, setIsModalUpdateOpen] = useState(false);
+  const [currUserData, setCurrUserData] = useState();
+
   const columns = [
     {
       title: "ID",
@@ -19,10 +24,31 @@ const UserTable = ({ userData }) => {
     {
       title: "Action",
       key: "action",
-      render: () => <UserUpdateModal />,
+      render: (record) => (
+        <Space size="middle">
+          <EditOutlined
+            className="cursor-pointer text-lg text-yellow-400!"
+            onClick={() => {
+              setIsModalUpdateOpen(true);
+              setCurrUserData(record);
+            }}
+          />
+          <DeleteOutlined className="cursor-pointer text-lg text-red-500!" />
+        </Space>
+      ),
     },
   ];
 
-  return <Table columns={columns} dataSource={userData} rowKey={"_id"} />;
+  return (
+    <>
+      <Table columns={columns} dataSource={userData} rowKey={"_id"} />
+      <UserUpdateModal
+        isModalUpdateOpen={isModalUpdateOpen}
+        setIsModalUpdateOpen={setIsModalUpdateOpen}
+        currUserData={currUserData}
+        setCurrUserData={setCurrUserData}
+      />
+    </>
+  );
 };
 export default UserTable;
