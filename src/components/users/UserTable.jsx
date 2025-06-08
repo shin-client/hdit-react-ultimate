@@ -82,6 +82,7 @@ const UserTable = ({ userData, fetchData }) => {
         isUserDetailOpen={isUserDetailOpen}
         setIsUserDetailOpen={setIsUserDetailOpen}
         currUserData={currUserData || []}
+        fetchData={fetchData}
       />
     </>
   );
