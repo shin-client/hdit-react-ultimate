@@ -60,7 +60,6 @@ const UserForm = ({ fetchData }) => {
         </Button>
         <Modal
           title="Create User"
-          closable={{ "aria-label": "Custom Close Button" }}
           open={isModalOpen}
           onOk={() => handleCreateUser()}
           onCancel={() => resetAndCloseModal()}

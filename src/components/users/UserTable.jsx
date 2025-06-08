@@ -1,11 +1,12 @@
 import { Table } from "antd";
+import UserUpdateModal from "./UserUpdateModal";
 
 const UserTable = ({ userData }) => {
   const columns = [
     {
       title: "ID",
       dataIndex: "_id",
-      render: (text) => <a>{text}</a>,
+      render: (id) => <a>{id}</a>,
     },
     {
       title: "Full Name",
@@ -14,6 +15,11 @@ const UserTable = ({ userData }) => {
     {
       title: "Email",
       dataIndex: "email",
+    },
+    {
+      title: "Action",
+      key: "action",
+      render: () => <UserUpdateModal />,
     },
   ];
 
