@@ -9,10 +9,7 @@ import { Link } from "react-router";
 
 const Header = () => {
   const [current, setCurrent] = useState("home");
-  const onClick = (e) => {
-    console.log("click ", e);
-    setCurrent(e.key);
-  };
+  const onClick = (e) => setCurrent(e.key);
 
   const items = [
     {

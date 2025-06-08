@@ -1,19 +1,21 @@
+import { Button, Result } from "antd";
 import { Link, useRouteError } from "react-router";
 
 const ErrorPage = () => {
   const error = useRouteError();
-  console.error(error);
 
   return (
     <div className="mx-auto flex h-[100vh] flex-col items-center justify-center">
-      <h1>Oops!</h1>
-      <p>Sorry, an unexpected error has occurred.</p>
-      <p>
-        <i>{error.statusText || error.message}</i>
-      </p>
-      <Link to={"/"} className="hover:underline">
-        Back to homepage
-      </Link>
+      <Result
+        status="404"
+        title="404"
+        subTitle={`Sorry, the page you visited does not exist. ${error.statusText || error.message}`}
+        extra={
+          <Link to={"/"} className="hover:underline">
+            <Button type="primary">Back Home</Button>
+          </Link>
+        }
+      />
     </div>
   );
 };
