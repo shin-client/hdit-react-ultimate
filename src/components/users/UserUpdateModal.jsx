@@ -1,10 +1,6 @@
-import { contextHolder, openNotification } from "@libs/utils";
+import { openNotification } from "@libs/utils";
 import { updateUserAPI } from "@services/apiService";
-import {
-  LockOutlined,
-  PhoneOutlined,
-  UserOutlined,
-} from "@ant-design/icons";
+import { LockOutlined, PhoneOutlined, UserOutlined } from "@ant-design/icons";
 import { Input, Modal } from "antd";
 import { useEffect, useState } from "react";
 
@@ -52,7 +48,6 @@ const UserUpdateModal = ({
 
   return (
     <>
-      {contextHolder}
       <Modal
         title="Update User"
         open={isModalUpdateOpen}

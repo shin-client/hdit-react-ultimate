@@ -1,5 +1,4 @@
 import { createUserAPI } from "@services/apiService";
-import { contextHolder, openNotification } from "@libs/utils";
 import {
   LockOutlined,
   MailOutlined,
@@ -8,6 +7,7 @@ import {
 } from "@ant-design/icons";
 import { Button, Input, Modal } from "antd";
 import { useState } from "react";
+import { openNotification } from "@libs/utils";
 
 const UserForm = ({ fetchData }) => {
   const [fullName, setFullName] = useState("");
@@ -47,7 +47,6 @@ const UserForm = ({ fetchData }) => {
     <div className="mx-auto">
       <div className="flex justify-between">
         <h3 className="text-2xl font-bold">Table users</h3>
-        {contextHolder}
         <Button type="primary" onClick={() => setIsModalOpen(true)}>
           Create user
         </Button>

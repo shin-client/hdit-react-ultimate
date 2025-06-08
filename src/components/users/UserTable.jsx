@@ -16,7 +16,7 @@ const UserTable = ({ userData, fetchData }) => {
       fetchData();
       message.success("Deleted");
     } else {
-      message.error(JSON.stringify(res.message));
+      message.error(res?.message);
     }
   };
 

@@ -1,11 +1,12 @@
 import { notification } from "antd";
 
-const [api, contextHolder] = notification.useNotification();
 const openNotification = (type, message, desc) => {
-  api[type]({
+  notification[type]({
     message: message,
     description: desc,
+    placement: "topRight",
+    duration: 2.5,
   });
 };
 
-export { openNotification, contextHolder };
+export { openNotification };
