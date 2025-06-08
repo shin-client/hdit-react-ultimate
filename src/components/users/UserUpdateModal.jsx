@@ -1,7 +1,6 @@
-import { createUserAPI } from "@/services/apiService";
+import { updateUserAPI } from "@/services/apiService";
 import {
   LockOutlined,
-  MailOutlined,
   PhoneOutlined,
   UserOutlined,
 } from "@ant-design/icons";
@@ -13,6 +12,7 @@ const UserUpdateModal = ({
   setIsModalUpdateOpen,
   currUserData,
   setCurrUserData,
+  fetchData,
 }) => {
   const [id, setId] = useState("");
   const [fullName, setFullName] = useState("");
@@ -35,11 +35,11 @@ const UserUpdateModal = ({
   }, [currUserData]);
 
   const handleUpdateUser = async () => {
-    const res = await createUserAPI(id, fullName, phone);
+    const res = await updateUserAPI(id, fullName, phone);
     if (res?.data) {
-      openNotification("success", "Update user success");
+      openNotification("success", "Update user", "Success!");
       resetAndCloseModal();
-      // fetchData();
+      fetchData();
     } else {
       openNotification(
         "error",

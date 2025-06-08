@@ -11,11 +11,19 @@ const createUserAPI = (fullName, email, password, phone) => {
   return axios.post(URL, data);
 };
 
-const updateUserAPI = () => {};
+const updateUserAPI = (id, fullName, phone) => {
+  const URL = "/api/v1/user";
+  const data = {
+    _id: id,
+    fullName: fullName,
+    phone: phone,
+  };
+  return axios.put(URL, data);
+};
 
 const fetchAllUserAPI = () => {
   const URL = "/api/v1/user";
   return axios.get(URL);
-}
+};
 
 export { createUserAPI, updateUserAPI, fetchAllUserAPI };

@@ -3,7 +3,7 @@ import UserUpdateModal from "./UserUpdateModal";
 import { useState } from "react";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 
-const UserTable = ({ userData }) => {
+const UserTable = ({ userData, fetchData }) => {
   const [isModalUpdateOpen, setIsModalUpdateOpen] = useState(false);
   const [currUserData, setCurrUserData] = useState();
 
@@ -47,6 +47,7 @@ const UserTable = ({ userData }) => {
         setIsModalUpdateOpen={setIsModalUpdateOpen}
         currUserData={currUserData}
         setCurrUserData={setCurrUserData}
+        fetchData={fetchData}
       />
     </>
   );

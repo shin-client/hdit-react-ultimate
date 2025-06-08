@@ -17,7 +17,7 @@ const UsersPage = () => {
   return (
     <div className="mx-auto max-w-screen-xl space-y-4">
       <UserForm fetchData={fetchData} />
-      <UserTable userData={userData} />
+      <UserTable userData={userData} fetchData={fetchData} />
     </div>
   );
 };
