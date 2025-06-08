@@ -1,4 +1,4 @@
-import { contextHolder, openNotification } from "@/libs/utils";
+import { contextHolder, openNotification } from "@libs/utils";
 import { updateUserAPI } from "@services/apiService";
 import {
   LockOutlined,
