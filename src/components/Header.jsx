@@ -1,6 +1,9 @@
 import {
   BookOutlined,
   HomeOutlined,
+  LoginOutlined,
+  LogoutOutlined,
+  SettingOutlined,
   UsergroupAddOutlined,
 } from "@ant-design/icons";
 import { Menu } from "antd";
@@ -27,6 +30,27 @@ const Header = () => {
       key: "books",
       icon: <BookOutlined />,
     },
+    {
+      label: "Settings",
+      icon: <SettingOutlined />,
+      children: [
+        {
+          label: <Link to={"/login"}>Login</Link>,
+          key: "login",
+          icon: <LoginOutlined />,
+        },
+        {
+          label: <Link to={"/login"}>Logout</Link>,
+          key: "logout",
+          icon: <LogoutOutlined />,
+        },
+        {
+          label: <Link to={"/register"}>Register</Link>,
+          key: "register",
+          icon: <BookOutlined />,
+        },
+      ],
+    },
   ];
 
   return (
@@ -36,6 +60,8 @@ const Header = () => {
         selectedKeys={[current]}
         mode="horizontal"
         items={items}
+        overflowedIndicator={false}
+        className="min-w-full flex-nowrap justify-center border-none"
       />
     </div>
   );

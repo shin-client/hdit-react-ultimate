@@ -45,10 +45,32 @@ const handleUploadFile = (file, folder) => {
   return axios.post(URL, bodyFormData, config);
 };
 
+const registerUserAPI = (fullName, email, password, phone) => {
+  const URL = "/api/v1/user/register";
+  const data = {
+    fullName: fullName,
+    email: email,
+    password: password,
+    phone: phone,
+  };
+  return axios.post(URL, data);
+};
+
+const loginUserAPI = (email, password) => {
+  const URL = "/api/v1/auth/login";
+  const data = {
+    username: email,
+    password: password,
+  };
+  return axios.post(URL, data);
+};
+
 export {
   createUserAPI,
   updateUserAPI,
   fetchAllUserAPI,
   deleteUserAPI,
   handleUploadFile,
+  registerUserAPI,
+  loginUserAPI,
 };
