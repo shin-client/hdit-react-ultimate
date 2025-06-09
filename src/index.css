@@ -1,11 +1,6 @@
 @import "tailwindcss";
 
 /* Header Menu Styles */
-.header-menu.ant-menu-horizontal {
-  background: transparent !important;
-  border-bottom: none !important;
-}
-
 .header-menu .ant-menu-item {
   color: rgba(255, 255, 255, 0.85) !important;
   border-bottom: 2px solid transparent !important;
