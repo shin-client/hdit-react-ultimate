@@ -8,8 +8,8 @@ const ErrorPage = () => {
     <div className="mx-auto flex h-[100vh] flex-col items-center justify-center">
       <Result
         status="404"
-        title="404"
-        subTitle={`Sorry, the page you visited does not exist. ${error.statusText || error.message}`}
+        title="Oops!"
+        subTitle={`${error.statusText || error.message}`}
         extra={
           <Link to={"/"} className="hover:underline">
             <Button type="primary">Back Home</Button>

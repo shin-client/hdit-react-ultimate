@@ -5,7 +5,15 @@ import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import UserDetail from "./UserDetail";
 import { deleteUserAPI } from "@services/apiService";
 
-const UserTable = ({ userData, fetchData }) => {
+const UserTable = ({
+  userData,
+  fetchData,
+  currPage,
+  pageSize,
+  totalPage,
+  setCurrPage,
+  setPageSize,
+}) => {
   const [isModalUpdateOpen, setIsModalUpdateOpen] = useState(false);
   const [isUserDetailOpen, setIsUserDetailOpen] = useState(false);
   const [currUserData, setCurrUserData] = useState();
@@ -21,6 +29,12 @@ const UserTable = ({ userData, fetchData }) => {
   };
 
   const columns = [
+    {
+      title: "NO",
+      render: (text, record, index) => {
+        return <p className="font-bold">{index + 1 + (currPage - 1) * 10}</p>;
+      },
+    },
     {
       title: "ID",
       render: (record) => (
@@ -68,9 +82,34 @@ const UserTable = ({ userData, fetchData }) => {
     },
   ];
 
+  const handleChangePagination = (pagination) => {
+    if (pagination.current !== currPage || pagination.pageSize !== pageSize) {
+      setCurrPage(pagination.current);
+      setPageSize(+pagination.pageSize);
+    }
+  };
+
   return (
     <>
-      <Table columns={columns} dataSource={userData} rowKey={"_id"} />
+      <Table
+        columns={columns}
+        dataSource={userData}
+        rowKey={"_id"}
+        pagination={{
+          current: currPage,
+          pageSize: pageSize,
+          showSizeChanger: true,
+          total: totalPage,
+          showTotal: (total, range) => {
+            return (
+              <div>
+                {range[0]} - {range[1]} of {total} rows
+              </div>
+            );
+          },
+        }}
+        onChange={handleChangePagination}
+      />
       <UserUpdateModal
         isModalUpdateOpen={isModalUpdateOpen}
         setIsModalUpdateOpen={setIsModalUpdateOpen}
