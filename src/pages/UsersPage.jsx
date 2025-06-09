@@ -28,9 +28,9 @@ const UsersPage = () => {
   useEffect(() => {
     fetchData();
   }, [fetchData]);
-
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="bg-gray-50 px-6 pt-6 pb-6">
+      {/* Remove min-h-screen since App.jsx handles the layout */}
       <div className="mx-auto max-w-7xl">
         <div className="mb-8">
           <div className="flex items-center justify-between">
@@ -58,7 +58,6 @@ const UsersPage = () => {
             </Button>
           </div>
         </div>
-
         <Row gutter={[24, 24]} className="mb-8">
           <Col xs={24} sm={12} lg={8}>
             <Card className="border-0 shadow-md transition-shadow duration-200 hover:shadow-lg">
@@ -106,31 +105,17 @@ const UsersPage = () => {
           isModalOpen={isModalOpen}
           setIsModalOpen={setIsModalOpen}
         />
-        <Card
-          className="border-0 shadow-lg"
-          title={
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-2">
-                <UsergroupAddOutlined className="text-blue-600" />
-                <span>Users List</span>
-              </div>
-              <Text type="secondary">
-                {userData.length} user{userData.length !== 1 ? "s" : ""} found
-              </Text>
-            </div>
-          }
-        >
-          <UserTable
-            userData={userData}
-            setUserData={setUserData}
-            fetchData={fetchData}
-            currPage={currPage}
-            pageSize={pageSize}
-            totalPage={totalPage}
-            setCurrPage={setCurrPage}
-            setPageSize={setPageSize}
-          />
-        </Card>
+        {/* User Table with built-in modern design */}
+        <UserTable
+          userData={userData}
+          setUserData={setUserData}
+          fetchData={fetchData}
+          currPage={currPage}
+          pageSize={pageSize}
+          totalPage={totalPage}
+          setCurrPage={setCurrPage}
+          setPageSize={setPageSize}
+        />
       </div>
     </div>
   );

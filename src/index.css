@@ -1,1 +1,306 @@
 @import "tailwindcss";
+
+/* Header Menu Styles */
+.header-menu.ant-menu-horizontal {
+  background: transparent !important;
+  border-bottom: none !important;
+}
+
+.header-menu .ant-menu-item {
+  color: rgba(255, 255, 255, 0.85) !important;
+  border-bottom: 2px solid transparent !important;
+  transition: all 0.3s ease !important;
+}
+
+.header-menu .ant-menu-item:hover {
+  color: white !important;
+  border-bottom-color: rgba(255, 255, 255, 0.7) !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+.header-menu .ant-menu-item-selected {
+  color: white !important;
+  border-bottom-color: white !important;
+  background: rgba(255, 255, 255, 0.15) !important;
+}
+
+.header-menu .ant-menu-submenu {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.header-menu .ant-menu-submenu:hover .ant-menu-submenu-title {
+  color: white !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+.header-menu .ant-menu-submenu-title {
+  color: rgba(255, 255, 255, 0.85) !important;
+  transition: all 0.3s ease !important;
+}
+
+.header-menu .ant-menu-submenu-arrow {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+/* User Detail Drawer Responsive */
+@media (max-width: 768px) {
+  .user-detail-drawer .ant-drawer {
+    width: 100% !important;
+  }
+
+  .user-detail-drawer .ant-drawer-body {
+    padding: 12px !important;
+  }
+}
+
+/* Mobile Navigation Drawer */
+.mobile-nav-drawer .ant-drawer-header {
+  border-bottom: 1px solid #f0f0f0;
+  padding: 16px 24px;
+}
+
+.mobile-nav-drawer .ant-drawer-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 72px);
+}
+
+.mobile-menu .ant-menu-item {
+  border-radius: 8px !important;
+  margin: 4px 0 !important;
+  height: 48px !important;
+  line-height: 48px !important;
+  font-weight: 500 !important;
+}
+
+.mobile-menu .ant-menu-item:hover {
+  background-color: #f0f7ff !important;
+  color: #1890ff !important;
+}
+
+.mobile-menu .ant-menu-item-selected {
+  background-color: #e6f4ff !important;
+  color: #1890ff !important;
+}
+
+.mobile-menu .ant-menu-item-icon {
+  font-size: 16px !important;
+}
+
+/* Custom Search Input in Header */
+.ant-input-affix-wrapper.ant-input-affix-wrapper-focused {
+  border-color: rgba(255, 255, 255, 0.4) !important;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1) !important;
+}
+
+.ant-input-affix-wrapper:hover {
+  border-color: rgba(255, 255, 255, 0.4) !important;
+}
+
+/* Dropdown customization */
+.ant-dropdown {
+  border-radius: 12px !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important;
+}
+
+.ant-dropdown .ant-dropdown-menu {
+  border-radius: 12px !important;
+  padding: 8px !important;
+}
+
+.ant-dropdown .ant-dropdown-menu-item {
+  border-radius: 8px !important;
+  margin: 2px 0 !important;
+}
+
+/* Badge customization */
+.ant-badge-count {
+  background: #ff4d4f !important;
+  border: 2px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Modern User Table Styles */
+.modern-user-table .ant-table {
+  border-radius: 12px !important;
+  overflow: hidden !important;
+}
+
+.modern-user-table .ant-table-thead > tr > th {
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%) !important;
+  border-bottom: 2px solid #e2e8f0 !important;
+  font-weight: 600 !important;
+  color: #334155 !important;
+  padding: 16px 12px !important;
+  font-size: 13px !important;
+}
+
+.modern-user-table .ant-table-tbody > tr > td {
+  padding: 12px !important;
+  border-bottom: 1px solid #f1f5f9 !important;
+  vertical-align: middle !important;
+}
+
+.modern-user-table .ant-table-tbody > tr:hover > td {
+  background-color: #f8fafc !important;
+}
+
+.modern-user-table .ant-table-tbody > tr.ant-table-row-selected > td {
+  background-color: #eff6ff !important;
+}
+
+/* Custom pagination */
+.modern-user-table .ant-pagination {
+  margin-top: 24px !important;
+  text-align: center !important;
+}
+
+.modern-user-table .ant-pagination .ant-pagination-item {
+  border-radius: 8px !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+.modern-user-table .ant-pagination .ant-pagination-item-active {
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8) !important;
+  border-color: #3b82f6 !important;
+}
+
+.modern-user-table .ant-pagination .ant-pagination-item-active a {
+  color: white !important;
+}
+
+/* Custom scrollbar for table */
+.modern-user-table .ant-table-body::-webkit-scrollbar {
+  height: 8px;
+}
+
+.modern-user-table .ant-table-body::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 4px;
+}
+
+.modern-user-table .ant-table-body::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+.modern-user-table .ant-table-body::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Action button hover effects */
+.modern-user-table .ant-btn-text:hover {
+  transform: translateY(-1px) !important;
+  transition: all 0.2s ease !important;
+}
+
+/* Tag styling improvements */
+.modern-user-table .ant-tag {
+  border-radius: 6px !important;
+  font-weight: 500 !important;
+  font-size: 11px !important;
+  padding: 2px 8px !important;
+}
+
+/* Avatar improvements */
+.modern-user-table .ant-avatar {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Responsive table wrapper */
+@media (max-width: 768px) {
+  .modern-user-table .ant-table-thead > tr > th {
+    padding: 12px 8px !important;
+    font-size: 12px !important;
+  }
+
+  .modern-user-table .ant-table-tbody > tr > td {
+    padding: 8px !important;
+  }
+}
+
+/* Footer Styles */
+.footer-gradient {
+  background: linear-gradient(135deg, #1e293b 0%, #1e40af 50%, #3730a3 100%);
+}
+
+/* Social Icons Hover Effects */
+footer .social-icon {
+  transition: all 0.3s ease;
+}
+
+footer .social-icon:hover {
+  transform: translateY(-2px) scale(1.1);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+/* Footer Links */
+footer a {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+footer a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: -2px;
+  left: 0;
+  background-color: #60a5fa;
+  transition: width 0.3s ease;
+}
+
+footer a:hover::after {
+  width: 100%;
+}
+
+/* Statistics Animation */
+.stats-number {
+  animation: countUp 2s ease-out;
+}
+
+@keyframes countUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Footer responsive adjustments */
+@media (max-width: 768px) {
+  footer .ant-row {
+    text-align: center;
+  }
+
+  footer .ant-col {
+    margin-bottom: 2rem;
+  }
+}
+
+/* Heart animation */
+@keyframes heartbeat {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-pulse {
+  animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+/* Footer bottom border gradient */
+.footer-border {
+  background: linear-gradient(90deg, transparent, #60a5fa, transparent);
+  height: 1px;
+}
