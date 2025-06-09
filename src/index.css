@@ -144,45 +144,6 @@
   background-color: #eff6ff !important;
 }
 
-/* Custom pagination */
-.modern-user-table .ant-pagination {
-  margin-top: 24px !important;
-  text-align: center !important;
-}
-
-.modern-user-table .ant-pagination .ant-pagination-item {
-  border-radius: 8px !important;
-  border: 1px solid #e2e8f0 !important;
-}
-
-.modern-user-table .ant-pagination .ant-pagination-item-active {
-  background: linear-gradient(135deg, #3b82f6, #1d4ed8) !important;
-  border-color: #3b82f6 !important;
-}
-
-.modern-user-table .ant-pagination .ant-pagination-item-active a {
-  color: white !important;
-}
-
-/* Custom scrollbar for table */
-.modern-user-table .ant-table-body::-webkit-scrollbar {
-  height: 8px;
-}
-
-.modern-user-table .ant-table-body::-webkit-scrollbar-track {
-  background: #f1f5f9;
-  border-radius: 4px;
-}
-
-.modern-user-table .ant-table-body::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 4px;
-}
-
-.modern-user-table .ant-table-body::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
-}
-
 /* Action button hover effects */
 .modern-user-table .ant-btn-text:hover {
   transform: translateY(-1px) !important;
@@ -214,21 +175,6 @@
   }
 }
 
-/* Footer Styles */
-.footer-gradient {
-  background: linear-gradient(135deg, #1e293b 0%, #1e40af 50%, #3730a3 100%);
-}
-
-/* Social Icons Hover Effects */
-footer .social-icon {
-  transition: all 0.3s ease;
-}
-
-footer .social-icon:hover {
-  transform: translateY(-2px) scale(1.1);
-  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
-}
-
 /* Footer Links */
 footer a {
   position: relative;
@@ -242,7 +188,7 @@ footer a::after {
   height: 1px;
   bottom: -2px;
   left: 0;
-  background-color: #60a5fa;
+  background-color: #ccc;
   transition: width 0.3s ease;
 }
 
