@@ -56,11 +56,12 @@ const registerUserAPI = (fullName, email, password, phone) => {
   return axios.post(URL, data);
 };
 
-const loginUserAPI = (email, password) => {
+const loginUserAPI = (email, password, delay) => {
   const URL = "/api/v1/auth/login";
   const data = {
     username: email,
     password: password,
+    delay: delay,
   };
   return axios.post(URL, data);
 };

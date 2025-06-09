@@ -2,6 +2,7 @@ import { LockOutlined, MailOutlined, LoginOutlined } from "@ant-design/icons";
 import { openNotification } from "@libs/utils";
 import { loginUserAPI } from "@services/apiService";
 import { Button, Card, Divider, Form, Input, Typography } from "antd";
+import { useState } from "react";
 import { useNavigate } from "react-router";
 
 const { Title, Text } = Typography;
@@ -9,8 +10,10 @@ const { Title, Text } = Typography;
 const LoginPage = () => {
   const [form] = Form.useForm();
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
   const onFinish = async (values) => {
-    const res = await loginUserAPI(values.email, values.password);
+    setIsLoading(true);
+    const res = await loginUserAPI(values.email, values.password, 5000);
     if (res.data) {
       openNotification("success", "Login", "Login successful!");
       console.log("Success:", values);
@@ -18,6 +21,7 @@ const LoginPage = () => {
     } else {
       openNotification("error", "Login", res.message);
     }
+    setIsLoading(false);
   };
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
@@ -82,6 +86,7 @@ const LoginPage = () => {
               type="primary"
               htmlType="submit"
               className="h-12 w-full rounded-lg border-0 bg-green-600 text-lg font-semibold shadow-lg transition-all duration-200 hover:bg-green-700 hover:shadow-xl"
+              loading={isLoading}
             >
               Sign In
             </Button>

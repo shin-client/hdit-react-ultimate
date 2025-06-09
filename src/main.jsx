@@ -10,6 +10,7 @@ import UsersPage from "@pages/UsersPage";
 import BooksPage from "@pages/BooksPage";
 import LoginPage from "@pages/LoginPage";
 import RegisterPage from "@pages/RegisterPage";
+import AboutPage from "@pages/AboutPage";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,7 @@ const router = createBrowserRouter([
   },
   { path: "/login", element: <LoginPage /> },
   { path: "/register", element: <RegisterPage /> },
+  { path: "/about", element: <AboutPage /> },
 ]);
 
 createRoot(document.getElementById("root")).render(
