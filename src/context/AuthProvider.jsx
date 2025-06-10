@@ -1,5 +1,4 @@
-import { getUserInfoAPI } from "@services/apiService";
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useState } from "react";
 
 const AuthContext = createContext();
 
@@ -10,6 +9,7 @@ export const useAuthContext = () => {
 
 const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAppLoading, setIsAppLoading] = useState(true);
   const [userInfo, setUserInfo] = useState({
     email: "",
     phone: "",
@@ -19,22 +19,16 @@ const AuthProvider = ({ children }) => {
     id: "",
   });
 
-  useEffect(() => {
-    if (window.localStorage.getItem("access_token")) {
-      const fetchUserInfo = async () => {
-        const res = await getUserInfoAPI();
-        if (res.data) {
-          setUserInfo(res.data.user);
-          setIsAuthenticated(true);
-        }
-      };
-      fetchUserInfo();
-    }
-  }, []);
-
   return (
     <AuthContext.Provider
-      value={{ isAuthenticated, setIsAuthenticated, userInfo, setUserInfo }}
+      value={{
+        isAuthenticated,
+        setIsAuthenticated,
+        userInfo,
+        setUserInfo,
+        isAppLoading,
+        setIsAppLoading,
+      }}
     >
       {children}
     </AuthContext.Provider>
