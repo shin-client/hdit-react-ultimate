@@ -1,4 +1,5 @@
 import { LockOutlined, MailOutlined, LoginOutlined } from "@ant-design/icons";
+import { useAuthContext } from "@context/AuthProvider";
 import { openNotification } from "@libs/utils";
 import { loginUserAPI } from "@services/apiService";
 import { Button, Card, Divider, Form, Input, Typography } from "antd";
@@ -11,18 +12,21 @@ const LoginPage = () => {
   const [form] = Form.useForm();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+  const { setUserInfo, setIsAuthenticated } = useAuthContext();
+
   const onFinish = async (values) => {
     setIsLoading(true);
     const res = await loginUserAPI(values.email, values.password, 5000);
     if (res.data) {
       openNotification("success", "Login", "Login successful!");
-      console.log("Success:", values);
+      localStorage.setItem("access_token", res.data.access_token);
+      setUserInfo(res.data.user);
+      setIsAuthenticated(true);
       navigate("/");
-    } else {
-      openNotification("error", "Login", res.message);
-    }
+    } else openNotification("error", "Login", res.message);
     setIsLoading(false);
   };
+
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };

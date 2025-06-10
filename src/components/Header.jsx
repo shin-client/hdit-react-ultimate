@@ -1,15 +1,13 @@
+import { useAuthContext } from "@context/AuthProvider";
 import {
   BookOutlined,
   HomeOutlined,
-  LoginOutlined,
   LogoutOutlined,
   SettingOutlined,
   UsergroupAddOutlined,
-  UserAddOutlined,
   AppstoreOutlined,
   MenuOutlined,
   CloseOutlined,
-  BellOutlined,
   SearchOutlined,
 } from "@ant-design/icons";
 import {
@@ -17,7 +15,6 @@ import {
   Typography,
   Avatar,
   Drawer,
-  Badge,
   Input,
   Button,
   Dropdown,
@@ -29,42 +26,26 @@ const { Title } = Typography;
 
 const Header = () => {
   const location = useLocation();
-  const [current, setCurrent] = useState("home");
+  const [currentPage, setCurrentPage] = useState("home");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { userInfo, setUserInfo, isAuthenticated, setIsAuthenticated } = useAuthContext();
 
-  // Simulate user authentication state (in real app, get from context/store)
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [userInfo, setUserInfo] = useState(null);
+  console.log({userInfo, isAuthenticated});
 
-  useEffect(() => {
-    // Check if user is logged in (from localStorage or context)
-    const token = localStorage.getItem("access_token");
-    const user = localStorage.getItem("user");
-
-    if (token && user) {
-      setIsAuthenticated(true);
-      setUserInfo(JSON.parse(user));
-    }
-  }, []);
-
-  // Update current menu item based on current route
   useEffect(() => {
     const path = location.pathname;
-    if (path === "/") setCurrent("home");
-    else if (path.startsWith("/users")) setCurrent("users");
-    else if (path.startsWith("/books")) setCurrent("books");
-    else if (path.startsWith("/login")) setCurrent("login");
-    else if (path.startsWith("/register")) setCurrent("register");
+    if (path === "/") setCurrentPage("home");
+    else if (path.startsWith("/users")) setCurrentPage("users");
+    else if (path.startsWith("/books")) setCurrentPage("books");
+    else if (path.startsWith("/login")) setCurrentPage("login");
+    else if (path.startsWith("/register")) setCurrentPage("register");
   }, [location]);
-  const onClick = (e) => {
-    setCurrent(e.key);
 
-    // Handle logout
+  const onClick = (e) => {
+    setCurrentPage(e.key);
     if (e.key === "logout") {
       handleLogout();
     }
-
-    // Close mobile menu after clicking
     setMobileMenuOpen(false);
   };
 
@@ -120,20 +101,6 @@ const Header = () => {
       key: "books",
       icon: <BookOutlined />,
     },
-    // ...(!isAuthenticated
-    //   ? [
-    //       {
-    //         label: <Link to={"/login"}>Login</Link>,
-    //         key: "login",
-    //         icon: <LoginOutlined />,
-    //       },
-    //       {
-    //         label: <Link to={"/register"}>Register</Link>,
-    //         key: "register",
-    //         icon: <UserAddOutlined />,
-    //       },
-    //     ]
-    //   : []),
   ];
   return (
     <>
@@ -166,7 +133,7 @@ const Header = () => {
               <div className="mx-8 hidden max-w-4xl lg:flex">
                 <Menu
                   onClick={onClick}
-                  selectedKeys={[current]}
+                  selectedKeys={[currentPage]}
                   mode="horizontal"
                   items={items}
                   overflowedIndicator={false}
@@ -300,7 +267,7 @@ const Header = () => {
           {/* Mobile Menu Items */}
           <Menu
             onClick={onClick}
-            selectedKeys={[current]}
+            selectedKeys={[currentPage]}
             mode="vertical"
             items={items}
             className="mobile-menu flex-1 border-none bg-transparent"
