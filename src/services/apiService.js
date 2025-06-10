@@ -71,6 +71,11 @@ const getUserInfoAPI = () => {
   return axios.get(URL);
 };
 
+const logoutUserAPI = () => {
+  const URL = "/api/v1/auth/logout";
+  return axios.post(URL);
+};
+
 export {
   createUserAPI,
   updateUserAPI,
@@ -80,4 +85,5 @@ export {
   registerUserAPI,
   loginUserAPI,
   getUserInfoAPI,
+  logoutUserAPI,
 };

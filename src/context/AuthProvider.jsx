@@ -10,14 +10,7 @@ export const useAuthContext = () => {
 const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isAppLoading, setIsAppLoading] = useState(true);
-  const [userInfo, setUserInfo] = useState({
-    email: "",
-    phone: "",
-    fullName: "",
-    role: "",
-    avatar: "",
-    id: "",
-  });
+  const [userInfo, setUserInfo] = useState();
 
   return (
     <AuthContext.Provider

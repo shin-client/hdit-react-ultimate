@@ -18,13 +18,16 @@ import {
   Input,
   Button,
   Dropdown,
+  message,
 } from "antd";
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
+import { logoutUserAPI } from "@services/apiService";
 
 const { Title } = Typography;
 
 const Header = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   const [currentPage, setCurrentPage] = useState();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -48,11 +51,15 @@ const Header = () => {
     setMobileMenuOpen(false);
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem("access_token");
-    setIsAuthenticated(false);
-    setUserInfo(null);
-    window.location.href = "/login";
+  const handleLogout = async () => {
+    const res = await logoutUserAPI();
+    if (res.data) {
+      message.success("Logout success!");
+      localStorage.removeItem("access_token");
+      setIsAuthenticated(false);
+      setUserInfo(null);
+      navigate("/login");
+    }
   };
 
   // User dropdown menu items
