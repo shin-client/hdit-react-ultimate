@@ -9,17 +9,16 @@ const PrivateRoute = ({ children }) => {
     return <>{children}</>;
   }
   return (
-  <div className="mx-auto flex h-[100vh] flex-col items-center justify-center">
-      <Result
-        status="403"
-        title="Unauthorize!"
-        subTitle={`Bạn cần đăng nhập để có thể truy cập vào trang này!`}
-        extra={
-          <Link to={"/login"} className="hover:underline">
-            <Button type="primary">Đến trang đăng nhập</Button>
-          </Link>
-        }
-      />
-    </div>);
+    <Result
+      status="403"
+      title="Unauthorize!"
+      subTitle={`Bạn cần đăng nhập để có thể truy cập vào trang này!`}
+      extra={
+        <Link to={"/login"} className="hover:underline">
+          <Button type="primary">Đến trang đăng nhập</Button>
+        </Link>
+      }
+    />
+  );
 };
 export default PrivateRoute;
