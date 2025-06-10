@@ -56,7 +56,7 @@ const registerUserAPI = (fullName, email, password, phone) => {
   return axios.post(URL, data);
 };
 
-const loginUserAPI = (email, password, delay) => {
+const loginUserAPI = (email, password, delay = 0) => {
   const URL = "/api/v1/auth/login";
   const data = {
     username: email,
@@ -64,6 +64,11 @@ const loginUserAPI = (email, password, delay) => {
     delay: delay,
   };
   return axios.post(URL, data);
+};
+
+const getUserInfoAPI = () => {
+  const URL = "/api/v1/auth/account";
+  return axios.get(URL);
 };
 
 export {
@@ -74,4 +79,5 @@ export {
   handleUploadFile,
   registerUserAPI,
   loginUserAPI,
+  getUserInfoAPI,
 };

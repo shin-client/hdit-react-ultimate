@@ -50,7 +50,6 @@ const Header = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("access_token");
-    localStorage.removeItem("user");
     setIsAuthenticated(false);
     setUserInfo(null);
     window.location.href = "/login";

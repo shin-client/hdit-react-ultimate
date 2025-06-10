@@ -1,4 +1,5 @@
-import { createContext, useContext, useState } from "react";
+import { getUserInfoAPI } from "@services/apiService";
+import { createContext, useContext, useEffect, useState } from "react";
 
 const AuthContext = createContext();
 
@@ -17,6 +18,19 @@ const AuthProvider = ({ children }) => {
     avatar: "",
     id: "",
   });
+
+  useEffect(() => {
+    if (window.localStorage.getItem("access_token")) {
+      const fetchUserInfo = async () => {
+        const res = await getUserInfoAPI();
+        if (res.data) {
+          setUserInfo(res.data.user);
+          setIsAuthenticated(true);
+        }
+      };
+      fetchUserInfo();
+    }
+  }, []);
 
   return (
     <AuthContext.Provider
