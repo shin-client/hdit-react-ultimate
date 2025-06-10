@@ -27,10 +27,6 @@ const LoginPage = () => {
     setIsLoading(false);
   };
 
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
-  };
-
   return (
     <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
       <Card
@@ -48,7 +44,6 @@ const LoginPage = () => {
           name="login"
           form={form}
           onFinish={onFinish}
-          onFinishFailed={onFinishFailed}
           layout="vertical"
           size="large"
         >
@@ -82,8 +77,8 @@ const LoginPage = () => {
             <Button
               type="primary"
               htmlType="submit"
-              className="w-full"
-              loading={false}
+              className="w-full *:flex"
+              loading={isLoading}
             >
               Sign In
             </Button>

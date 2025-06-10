@@ -31,8 +31,6 @@ const Header = () => {
   const { userInfo, setUserInfo, isAuthenticated, setIsAuthenticated } =
     useAuthContext();
 
-  console.log({ userInfo, isAuthenticated });
-
   useEffect(() => {
     const path = location.pathname;
     if (path === "/") setCurrentPage("home");

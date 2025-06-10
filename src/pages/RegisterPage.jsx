@@ -24,14 +24,10 @@ const RegisterPage = () => {
     );
     if (res.data) {
       openNotification("success", "Register User", "Success!");
-      console.log("Success:", values);
       navigate("/login");
     } else {
       openNotification("error", "Register User", res.message);
     }
-  };
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
   };
 
   return (
@@ -56,7 +52,6 @@ const RegisterPage = () => {
           name="register"
           form={form}
           onFinish={onFinish}
-          onFinishFailed={onFinishFailed}
           layout="vertical"
           size="large"
           className="space-y-1"
