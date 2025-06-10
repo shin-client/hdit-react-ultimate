@@ -38,15 +38,11 @@ const LoginPage = () => {
         style={{ borderRadius: "16px" }}
       >
         <div className="mb-8 text-center">
-          <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-green-100">
-            <LoginOutlined className="text-2xl text-green-600" />
+          <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-blue-100">
+            <LoginOutlined className="text-2xl" />
           </div>
-          <Title level={2} className="mb-2 text-gray-800">
-            Welcome Back
-          </Title>
-          <Text type="secondary" className="text-base">
-            Sign in to your account to continue
-          </Text>
+          <Title level={2}>Welcome Back</Title>
+          <Text type="secondary">Sign in to your account to continue</Text>
         </div>
         <Form
           name="login"
@@ -55,7 +51,6 @@ const LoginPage = () => {
           onFinishFailed={onFinishFailed}
           layout="vertical"
           size="large"
-          className="space-y-1"
         >
           <Form.Item
             label="Email Address"
@@ -68,7 +63,6 @@ const LoginPage = () => {
             <Input
               prefix={<MailOutlined className="text-gray-400" />}
               placeholder="Enter your email"
-              className="rounded-lg"
             />
           </Form.Item>
           <Form.Item
@@ -82,15 +76,14 @@ const LoginPage = () => {
             <Input.Password
               prefix={<LockOutlined className="text-gray-400" />}
               placeholder="Enter your password"
-              className="rounded-lg"
             />
           </Form.Item>
-          <Form.Item className="mb-4">
+          <Form.Item>
             <Button
               type="primary"
               htmlType="submit"
-              className="h-12 w-full rounded-lg border-0 bg-green-600 text-lg font-semibold shadow-lg transition-all duration-200 hover:bg-green-700 hover:shadow-xl"
-              loading={isLoading}
+              className="w-full"
+              loading={false}
             >
               Sign In
             </Button>

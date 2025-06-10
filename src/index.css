@@ -85,12 +85,12 @@
 
 /* Custom Search Input in Header */
 .ant-input-affix-wrapper.ant-input-affix-wrapper-focused {
-  border-color: rgba(255, 255, 255, 0.4) !important;
+  border-color: #d1d5dc !important;
   box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1) !important;
 }
 
 .ant-input-affix-wrapper:hover {
-  border-color: rgba(255, 255, 255, 0.4) !important;
+  border-color: #d1d5dc !important;
 }
 
 /* Dropdown customization */

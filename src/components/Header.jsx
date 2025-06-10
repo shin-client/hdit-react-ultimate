@@ -26,11 +26,12 @@ const { Title } = Typography;
 
 const Header = () => {
   const location = useLocation();
-  const [currentPage, setCurrentPage] = useState("home");
+  const [currentPage, setCurrentPage] = useState();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { userInfo, setUserInfo, isAuthenticated, setIsAuthenticated } = useAuthContext();
+  const { userInfo, setUserInfo, isAuthenticated, setIsAuthenticated } =
+    useAuthContext();
 
-  console.log({userInfo, isAuthenticated});
+  console.log({ userInfo, isAuthenticated });
 
   useEffect(() => {
     const path = location.pathname;
@@ -102,6 +103,7 @@ const Header = () => {
       icon: <BookOutlined />,
     },
   ];
+
   return (
     <>
       <header className="sticky top-0 z-50 border-b border-gray-200 bg-white shadow-lg">
@@ -156,7 +158,7 @@ const Header = () => {
                     arrow={{ pointAtCenter: true }}
                     trigger={["click"]}
                   >
-                    <div className="flex cursor-pointer items-center space-x-3 rounded-lg px-3 py-2 transition-all duration-200 hover:bg-white/10">
+                    <div className="flex cursor-pointer items-center space-x-3! rounded-lg px-3 py-2 transition-all duration-200 hover:bg-white/10">
                       <Avatar
                         src={
                           userInfo.avatar
