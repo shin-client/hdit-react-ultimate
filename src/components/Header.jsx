@@ -266,7 +266,6 @@ const Header = () => {
             <Input
               placeholder="Search..."
               prefix={<SearchOutlined className="text-gray-400" />}
-              className="rounded-lg"
             />
           </div>
 

@@ -54,7 +54,6 @@ const UserUpdateModal = ({
         onOk={() => handleUpdateUser()}
         onCancel={() => resetAndCloseModal()}
         okText={"Update"}
-        maskClosable={false}
         centered
       >
         <div className="flex flex-col gap-4">

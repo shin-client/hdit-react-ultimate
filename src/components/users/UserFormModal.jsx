@@ -58,7 +58,6 @@ const UserFormModal = ({ fetchData, isModalOpen, setIsModalOpen }) => {
       onCancel={resetAndCloseModal}
       okText="Create User"
       cancelText="Cancel"
-      maskClosable={false}
       centered
       width={500}
       className="user-form-modal"
@@ -90,7 +89,6 @@ const UserFormModal = ({ fetchData, isModalOpen, setIsModalOpen }) => {
           <Input
             prefix={<UserOutlined className="text-gray-400" />}
             placeholder="Enter full name"
-            className="rounded-lg"
           />
         </Form.Item>
 
@@ -119,7 +117,6 @@ const UserFormModal = ({ fetchData, isModalOpen, setIsModalOpen }) => {
           <Input.Password
             prefix={<LockOutlined className="text-gray-400" />}
             placeholder="Enter password"
-            className="rounded-lg"
           />
         </Form.Item>
 
@@ -138,7 +135,6 @@ const UserFormModal = ({ fetchData, isModalOpen, setIsModalOpen }) => {
           <Input
             prefix={<PhoneOutlined className="text-gray-400" />}
             placeholder="Enter phone number"
-            className="rounded-lg"
           />
         </Form.Item>
       </Form>

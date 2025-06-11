@@ -67,19 +67,18 @@ const UserDetail = ({
   };
   const handleUpdateUserAvatar = async () => {
     if (!selectedFile) return;
-
     setUploading(true);
     try {
       const res = await handleUploadFile(selectedFile, "avatar");
       if (res?.data) {
         const newAvatar = res.data.fileUploaded;
+        currUserData.avatar = newAvatar;
         const resUpdateAvatar = await updateUserAPI(
           currUserData._id,
           currUserData.fullName,
           currUserData.email,
           newAvatar,
         );
-
         if (resUpdateAvatar?.data) {
           message.success("Avatar updated successfully!");
           resetUploadState();
@@ -130,7 +129,7 @@ const UserDetail = ({
     >
       <div className="space-y-6!">
         {/* Avatar Section */}
-        <Card className="border-0 shadow-sm transition-shadow duration-200 hover:shadow-md">
+        <Card className="border-0 shadow-sm transition-shadow duration-200">
           <div className="flex flex-col items-center space-y-4">
             <div className="group relative">
               <Avatar
@@ -141,7 +140,7 @@ const UserDetail = ({
                     : undefined
                 }
                 icon={!currUserData.avatar && <UserOutlined />}
-                className="border-4 border-white shadow-lg transition-transform duration-200 group-hover:scale-105"
+                className="border-4 border-white shadow-lg transition-transform duration-200"
               />
               {uploading && (
                 <div className="bg-opacity-50 absolute inset-0 flex items-center justify-center rounded-full bg-black">

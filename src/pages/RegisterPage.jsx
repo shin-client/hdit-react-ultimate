@@ -66,7 +66,6 @@ const RegisterPage = () => {
             <Input
               prefix={<UserAddOutlined className="text-gray-400" />}
               placeholder="Enter your full name"
-              className="rounded-lg"
             />
           </Form.Item>
 
@@ -81,7 +80,6 @@ const RegisterPage = () => {
             <Input
               prefix={<MailOutlined className="text-gray-400" />}
               placeholder="Enter your email"
-              className="rounded-lg"
             />
           </Form.Item>
 
@@ -96,7 +94,6 @@ const RegisterPage = () => {
             <Input.Password
               prefix={<LockOutlined className="text-gray-400" />}
               placeholder="Enter your password"
-              className="rounded-lg"
             />
           </Form.Item>
 
@@ -115,7 +112,6 @@ const RegisterPage = () => {
             <Input
               prefix={<PhoneOutlined className="text-gray-400" />}
               placeholder="Enter your phone number"
-              className="rounded-lg"
             />
           </Form.Item>
 

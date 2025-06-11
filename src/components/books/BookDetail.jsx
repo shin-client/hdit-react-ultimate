@@ -73,6 +73,7 @@ const BookDetail = () => {
     const res = await handleUploadFile(selectedFile, "book");
     if (res?.data) {
       const newThumbnail = res.data.fileUploaded;
+      currBookData.thumbnail = newThumbnail;
       const resUpdateThumbnail = await updateBookAPI(
         currBookData._id,
         newThumbnail,

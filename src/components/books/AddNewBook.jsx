@@ -22,10 +22,11 @@ import { useState } from "react";
 import { useBookContext } from "@context/BookProvider";
 
 const AddNewBook = () => {
-  const { isModalOpen, setIsModalOpen, fetchBooksData } = useBookContext();
+  const { isModalOpen, setIsModalOpen, fetchBooksData } =
+    useBookContext();
   const [selectedFile, setSelectedFile] = useState();
   const [preview, setPreview] = useState();
-  const [form] = Form.useForm();
+  const [form] = Form.useForm()
 
   const handleCreateBook = async (values) => {
     const resUploadFile = await handleUploadFile(selectedFile, "book");
@@ -54,6 +55,7 @@ const AddNewBook = () => {
           Array.isArray(res?.message) ? res.message.join("; ") : res?.message,
         );
       }
+      resetAndCloseModal();
     }
   };
 
@@ -105,7 +107,6 @@ const AddNewBook = () => {
       onCancel={resetAndCloseModal}
       okText="Create Book"
       cancelText="Cancel"
-      maskClosable={false}
       centered
       width={500}
       className="book-form-modal"
@@ -169,7 +170,6 @@ const AddNewBook = () => {
           <Input
             prefix={<BookOutlined className="text-gray-400" />}
             placeholder="Enter book name"
-            className="rounded-lg"
           />
         </Form.Item>
         <Form.Item
