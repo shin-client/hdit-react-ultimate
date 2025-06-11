@@ -3,7 +3,7 @@ import { updateBookAPI } from "@services/apiService";
 import { BookOutlined, LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Input, Modal } from "antd";
 import { useEffect, useState } from "react";
-import { useBookContext } from "@pages/BooksPage";
+import { useBookContext } from "@context/BookProvider";
 
 const BookUpdateModal = () => {
   const {

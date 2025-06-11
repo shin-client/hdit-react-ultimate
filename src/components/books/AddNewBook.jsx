@@ -13,14 +13,15 @@ import {
   Card,
   Form,
   Input,
+  InputNumber,
   message,
   Modal,
   Select,
   Upload,
 } from "antd";
 import { openNotification } from "@libs/utils";
-import { useBookContext } from "@pages/BooksPage";
 import { useState } from "react";
+import { useBookContext } from "@context/BookProvider";
 
 const AddNewBook = () => {
   const { isModalOpen, setIsModalOpen, fetchBooksData } = useBookContext();
@@ -126,7 +127,7 @@ const AddNewBook = () => {
           name="thumbnail"
           rules={[{ required: true, message: "Please upload thumbnail!" }]}
         >
-          <Card className="border-0 shadow-sm transition-shadow duration-200 hover:shadow-md">
+          <Card className="border-0 shadow-sm transition-shadow duration-200">
             <div className="flex flex-col items-center space-y-4">
               <div className="w-full">
                 <Upload {...props} className="w-full">
@@ -179,22 +180,20 @@ const AddNewBook = () => {
           rules={[{ required: true, message: "Please enter author name!" }]}
         >
           <Input
-            prefix={<MailOutlined className="text-gray-400" />}
+            prefix={<UserOutlined className="text-gray-400" />}
             placeholder="Enter author name"
           />
         </Form.Item>
         <Form.Item
           label="Price"
           name="price"
-          rules={[
-            { required: true, message: "Please enter price!" },
-            { min: 0, message: "Price must be greater than or equal to zero!" },
-          ]}
+          rules={[{ required: true, message: "Please enter price!" }]}
         >
-          <Input
+          <InputNumber
             prefix={<LockOutlined className="text-gray-400" />}
             placeholder="Enter price"
-            className="rounded-lg"
+            min={0}
+            style={{ width: "100%" }}
           />
         </Form.Item>
         <Form.Item
@@ -202,10 +201,12 @@ const AddNewBook = () => {
           name="quantity"
           rules={[{ required: true, message: "Please enter quantity!" }]}
         >
-          <Input
+          <InputNumber
             prefix={<PhoneOutlined className="text-gray-400" />}
             placeholder="Enter quantity"
-            className="rounded-lg"
+            min={0}
+            precision={0}
+            style={{ width: "100%" }}
           />
         </Form.Item>
         <Form.Item
@@ -217,8 +218,6 @@ const AddNewBook = () => {
             showSearch
             placeholder="Select a category"
             optionFilterProp="label"
-            // onChange={onChange}
-            // onSearch={onSearch}
             options={[
               { value: "Arts", label: "Arts" },
               { value: "Teen", label: "Teen" },

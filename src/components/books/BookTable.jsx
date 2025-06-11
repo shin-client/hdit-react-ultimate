@@ -3,13 +3,13 @@ import {
   Popconfirm,
   Space,
   Table,
-  Avatar,
   Button,
   Tooltip,
   Input,
   Select,
   Typography,
   Badge,
+  Image,
 } from "antd";
 import { useState, useMemo } from "react";
 import {
@@ -22,9 +22,9 @@ import {
   BookOutlined,
 } from "@ant-design/icons";
 import { deleteBookAPI } from "@services/apiService";
-import { useBookContext } from "@pages/BooksPage";
 import BookDetail from "./BookDetail";
 import BookUpdateModal from "./BookUpdateModal";
+import { useBookContext } from "@context/BookProvider";
 
 const { Search } = Input;
 const { Option } = Select;
@@ -101,14 +101,13 @@ const BookTable = () => {
       fixed: "left",
       render: (record) => (
         <div className={`flex items-center space-x-3!`}>
-          <Avatar
-            size={40}
+          <Image
             src={
               record.thumbnail
                 ? `${import.meta.env.VITE_API_URL}/images/book/${record.thumbnail}`
                 : undefined
             }
-            className={`"border-blue-100" border-2`}
+            className={`size-22! object-contain`}
           />
           <div className="min-w-0 flex-1">
             <div className="flex items-center space-x-2">
@@ -269,7 +268,7 @@ const BookTable = () => {
         <div className="mt-4 flex flex-wrap gap-4">
           <div className="rounded-lg bg-blue-50 px-4 py-2">
             <Text className="text-sm font-medium text-blue-600">
-              Total Books:
+              Total Books:{" "}
               <strong>{Array.isArray(bookData) ? bookData.length : 0}</strong>
             </Text>
           </div>

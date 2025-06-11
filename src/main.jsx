@@ -13,6 +13,7 @@ import RegisterPage from "@pages/RegisterPage";
 import AboutPage from "@pages/AboutPage";
 import AuthProvider from "./context/AuthProvider";
 import PrivateRoute from "@pages/PrivateRoute";
+import BookProvider from "@context/BookProvider";
 
 const router = createBrowserRouter([
   {
@@ -25,7 +26,9 @@ const router = createBrowserRouter([
         path: "/books",
         element: (
           <PrivateRoute>
-            <BooksPage />
+            <BookProvider>
+              <BooksPage />
+            </BookProvider>
           </PrivateRoute>
         ),
       },
