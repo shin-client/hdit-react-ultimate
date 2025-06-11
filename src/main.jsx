@@ -14,6 +14,7 @@ import AboutPage from "@pages/AboutPage";
 import AuthProvider from "./context/AuthProvider";
 import PrivateRoute from "@pages/PrivateRoute";
 import BookProvider from "@context/BookProvider";
+import "nprogress/nprogress.css";
 
 const router = createBrowserRouter([
   {
