@@ -47,11 +47,17 @@ const BookTable = () => {
     setIsModalUpdateOpen,
     isLoading: contextLoading,
   } = useBookContext();
-
   const handleDeleteBook = async (record) => {
     setLoading(true);
     const res = await deleteBookAPI(record._id);
     if (res?.data) {
+      // Check if after deletion, current page becomes empty and we should go back
+      const remainingItemsOnCurrentPage = filteredData.length - 1;
+      const shouldGoToPreviousPage =
+        remainingItemsOnCurrentPage === 0 && currPage > 1;
+      if (shouldGoToPreviousPage) {
+        setCurrPage(currPage - 1);
+      }
       fetchBooksData();
       message.success("Book deleted successfully!");
     } else {
