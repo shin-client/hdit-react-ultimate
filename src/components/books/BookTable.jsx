@@ -4,7 +4,6 @@ import {
   Space,
   Table,
   Avatar,
-  Tag,
   Button,
   Tooltip,
   Input,
@@ -12,7 +11,6 @@ import {
   Typography,
   Badge,
 } from "antd";
-import UserUpdateModal from "./UserUpdateModal";
 import { useState, useMemo } from "react";
 import {
   DeleteOutlined,
@@ -21,58 +19,62 @@ import {
   UserOutlined,
   SearchOutlined,
   FilterOutlined,
-  MailOutlined,
-  PhoneOutlined,
+  BookOutlined,
 } from "@ant-design/icons";
-import UserDetail from "./UserDetail";
-import { deleteUserAPI } from "@services/apiService";
+import { deleteBookAPI } from "@services/apiService";
+import { useBookContext } from "@pages/BooksPage";
+import BookDetail from "./BookDetail";
+import BookUpdateModal from "./BookUpdateModal";
 
 const { Search } = Input;
 const { Option } = Select;
 const { Text } = Typography;
 
-const UserTable = ({
-  userData,
-  fetchData,
-  currPage,
-  pageSize,
-  totalPage,
-  setCurrPage,
-  setPageSize,
-}) => {
-  const [isModalUpdateOpen, setIsModalUpdateOpen] = useState(false);
-  const [isUserDetailOpen, setIsUserDetailOpen] = useState(false);
-  const [currUserData, setCurrUserData] = useState();
+const BookTable = () => {
   const [searchText, setSearchText] = useState("");
-  const [filterRole, setFilterRole] = useState("ALL");
+  const [filterCategory, setFilterCategory] = useState("ALL");
   const [loading, setLoading] = useState(false);
+  const {
+    bookData,
+    currPage,
+    pageSize,
+    totalPage,
+    setCurrPage,
+    setPageSize,
+    fetchBooksData,
+    setIsBookDetailOpen,
+    setCurrBookData,
+    setIsModalUpdateOpen,
+    isLoading: contextLoading,
+  } = useBookContext();
 
-  const handleDeleteUser = async (record) => {
+  const handleDeleteBook = async (record) => {
     setLoading(true);
-    const res = await deleteUserAPI(record._id);
+    const res = await deleteBookAPI(record._id);
     if (res?.data) {
-      fetchData();
-      message.success("User deleted successfully!");
+      fetchBooksData();
+      message.success("Book deleted successfully!");
     } else {
-      message.error(res?.message || "Failed to delete user");
+      message.error(res?.message || "Failed to delete book");
     }
     setLoading(false);
   };
-
   // Filter userData based on search and role filter
   const filteredData = useMemo(() => {
-    return (
-      userData?.filter((user) => {
-        const matchesSearch =
-          !searchText ||
-          user.email?.toLowerCase().includes(searchText.toLowerCase());
+    // Defensive check to ensure bookData is always an array
+    const safeBookData = Array.isArray(bookData) ? bookData : [];
 
-        const matchesRole = filterRole === "ALL" || user.role === filterRole;
+    return safeBookData.filter((book) => {
+      const matchesSearch =
+        !searchText ||
+        book.mainText?.toLowerCase().includes(searchText.toLowerCase());
 
-        return matchesSearch && matchesRole;
-      }) || []
-    );
-  }, [userData, searchText, filterRole]);
+      const matchesCategory =
+        filterCategory === "ALL" || book.category === filterCategory;
+
+      return matchesSearch && matchesCategory;
+    });
+  }, [bookData, searchText, filterCategory]);
 
   const columns = [
     {
@@ -94,7 +96,7 @@ const UserTable = ({
       ),
     },
     {
-      title: "User",
+      title: "Book",
       width: 200,
       fixed: "left",
       render: (record) => (
@@ -102,11 +104,10 @@ const UserTable = ({
           <Avatar
             size={40}
             src={
-              record.avatar
-                ? `${import.meta.env.VITE_API_URL}/images/avatar/${record.avatar}`
+              record.thumbnail
+                ? `${import.meta.env.VITE_API_URL}/images/book/${record.thumbnail}`
                 : undefined
             }
-            icon={<UserOutlined />}
             className={`"border-blue-100" border-2`}
           />
           <div className="min-w-0 flex-1">
@@ -115,31 +116,23 @@ const UserTable = ({
                 strong
                 className={`cursor-pointer text-gray-800 transition-colors hover:text-blue-600!`}
                 onClick={() => {
-                  setIsUserDetailOpen(true);
-                  setCurrUserData(record);
+                  setIsBookDetailOpen(true);
+                  setCurrBookData(record);
                 }}
               >
-                {record.fullName || "N/A"}
+                {record.mainText || "N/A"}
               </Text>
-              {record.role && (
-                <Tag
-                  color={record.role === "ADMIN" ? "red" : "blue"}
-                  className="text-xs font-bold"
-                >
-                  {record.role}
-                </Tag>
-              )}
             </div>
             <div className="mt-1 flex items-center space-x-1 text-sm text-gray-500">
-              <MailOutlined className="text-xs" />
+              <UserOutlined className="text-xs" />
               <Text type="secondary" className="truncate">
-                {record.email}
+                {record.author}
               </Text>
             </div>
-            {record.phone && (
+            {record.category && (
               <div className="flex items-center space-x-1 text-sm text-gray-500">
-                <PhoneOutlined className="text-xs" />
-                <Text type="secondary">{record.phone}</Text>
+                <BookOutlined className="text-xs" />
+                <Text type="secondary">{record.category}</Text>
               </div>
             )}
           </div>
@@ -147,56 +140,22 @@ const UserTable = ({
       ),
     },
     {
-      title: "User ID",
-      dataIndex: "_id",
+      title: "Price",
+      dataIndex: "price",
       width: 120,
-      render: (id) => (
-        <Tooltip title={"Click to copy"}>
-          <Text
-            code
-            className={`cursor-pointer text-xs`}
-            onClick={() => {
-              navigator.clipboard.writeText(id);
-            }}
-          >
-            {id ? `${id.substring(0, 12)}...` : "N/A"}
-          </Text>
-        </Tooltip>
+      render: (price) => (
+        <Text className={`text-xs`}>
+          {new Intl.NumberFormat("vi", {
+            style: "currency",
+            currency: "VND",
+          }).format(price)}
+        </Text>
       ),
     },
     {
-      title: "Status",
-      width: 100,
-      render: (record) => (
-        <div className="text-center">
-          <Tag
-            color={record.isActive !== false ? "success" : "error"}
-            className={`px-3} rounded-full`}
-          >
-            {record.isActive !== false ? "Active" : "Inactive"}
-          </Tag>
-        </div>
-      ),
-    },
-    {
-      title: "Created Date",
-      dataIndex: "createdAt",
+      title: "Quantity",
+      dataIndex: "quantity",
       width: 120,
-      render: (date) => (
-        <div className={`text-center`}>
-          <Text className="text-sm">
-            {date ? new Date(date).toLocaleDateString("vi-VN") : "N/A"}
-          </Text>
-          <div className="text-xs text-gray-400">
-            {date
-              ? new Date(date).toLocaleTimeString("vi-VN", {
-                  hour: "2-digit",
-                  minute: "2-digit",
-                })
-              : ""}
-          </div>
-        </div>
-      ),
     },
     {
       title: "Actions",
@@ -211,13 +170,13 @@ const UserTable = ({
               size="small"
               className="text-blue-600! hover:bg-blue-50! hover:text-blue-800!"
               onClick={() => {
-                setIsUserDetailOpen(true);
-                setCurrUserData(record);
+                setIsBookDetailOpen(true);
+                setCurrBookData(record);
               }}
             />
           </Tooltip>
 
-          <Tooltip title="Edit User">
+          <Tooltip title="Edit book">
             <Button
               type="text"
               icon={<EditOutlined />}
@@ -225,28 +184,28 @@ const UserTable = ({
               className="text-yellow-600! hover:bg-yellow-50! hover:text-yellow-800!"
               onClick={() => {
                 setIsModalUpdateOpen(true);
-                setCurrUserData(record);
+                setCurrBookData(record);
               }}
             />
           </Tooltip>
 
           <Popconfirm
-            title="Delete User"
+            title="Delete book"
             description={
               <div>
-                <p>Are you sure you want to delete this user?</p>
+                <p>Are you sure you want to delete this book?</p>
                 <p className="mt-1 text-sm text-red-500">
                   This action cannot be undone!
                 </p>
               </div>
             }
             placement="topRight"
-            onConfirm={() => handleDeleteUser(record)}
+            onConfirm={() => handleDeleteBook(record)}
             okText="Delete"
             cancelText="Cancel"
             okButtonProps={{ danger: true, loading }}
           >
-            <Tooltip title="Delete User">
+            <Tooltip title="Delete Book">
               <Button
                 type="text"
                 icon={<DeleteOutlined />}
@@ -275,17 +234,14 @@ const UserTable = ({
         <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           <div className="flex-1">
             <h3 className="mb-2 text-lg font-semibold text-gray-800">
-              User Management
+              Book Management
             </h3>
-            <p className="text-sm text-gray-500">
-              Manage and organize your users with advanced filtering and search
-              capabilities
-            </p>
+            <p className="text-sm text-gray-500">Manage the books</p>
           </div>
 
           <div className="flex w-full flex-col gap-3 sm:flex-row lg:w-auto">
             <Search
-              placeholder="Search users by email"
+              placeholder="Search books by name"
               allowClear
               enterButton={<SearchOutlined />}
               size="large"
@@ -299,22 +255,22 @@ const UserTable = ({
               placeholder="Filter by role"
               size="large"
               className="w-full lg:w-40"
-              value={filterRole}
-              onChange={setFilterRole}
+              value={filterCategory}
+              onChange={setFilterCategory}
               suffixIcon={<FilterOutlined />}
             >
               <Option value="ALL">All Roles</Option>
-              <Option value="ADMIN">Admin</Option>
-              <Option value="USER">User</Option>
+              <Option value="Arts">Arts</Option>
+              <Option value="Teen">Teen</Option>
             </Select>
           </div>
         </div>
-
         {/* Stats Row */}
         <div className="mt-4 flex flex-wrap gap-4">
           <div className="rounded-lg bg-blue-50 px-4 py-2">
             <Text className="text-sm font-medium text-blue-600">
-              Total Users: <strong>{userData?.length || 0}</strong>
+              Total Books:
+              <strong>{Array.isArray(bookData) ? bookData.length : 0}</strong>
             </Text>
           </div>
           <div className="rounded-lg bg-green-50 px-4 py-2">
@@ -331,14 +287,13 @@ const UserTable = ({
           )}
         </div>
       </div>
-
       {/* Enhanced Table */}
       <div className="p-6">
         <Table
           columns={columns}
           dataSource={filteredData}
           rowKey="_id"
-          loading={loading}
+          loading={loading || contextLoading}
           className="modern-user-table"
           pagination={{
             current: currPage,
@@ -351,7 +306,7 @@ const UserTable = ({
                 <strong>
                   {range[0]}-{range[1]}
                 </strong>{" "}
-                of <strong>{total}</strong> users
+                of <strong>{total}</strong> books
               </div>
             ),
             pageSizeOptions: ["10", "20", "50", "100"],
@@ -362,34 +317,21 @@ const UserTable = ({
             emptyText: (
               <div className="py-8 text-center">
                 <UserOutlined className="mb-2 text-4xl text-gray-300" />
-                <p className="mb-1 text-gray-500">No users found</p>
+                <p className="mb-1 text-gray-500">No books found</p>
                 <p className="text-sm text-gray-400">
                   {searchText
                     ? "Try adjusting your search criteria"
-                    : "Add some users to get started"}
+                    : "Add some books to get started"}
                 </p>
               </div>
             ),
           }}
         />
       </div>
-
       {/* Modals */}
-      <UserUpdateModal
-        isModalUpdateOpen={isModalUpdateOpen}
-        setIsModalUpdateOpen={setIsModalUpdateOpen}
-        currUserData={currUserData}
-        setCurrUserData={setCurrUserData}
-        fetchData={fetchData}
-      />
-
-      <UserDetail
-        isUserDetailOpen={isUserDetailOpen}
-        setIsUserDetailOpen={setIsUserDetailOpen}
-        currUserData={currUserData || {}}
-        fetchData={fetchData}
-      />
+      <BookUpdateModal />
+      <BookDetail />
     </div>
   );
 };
-export default UserTable;
+export default BookTable;

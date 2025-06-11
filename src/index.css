@@ -109,72 +109,6 @@
   margin: 2px 0 !important;
 }
 
-/* Badge customization */
-.ant-badge-count {
-  background: #ff4d4f !important;
-  border: 2px solid rgba(255, 255, 255, 0.3) !important;
-}
-
-/* Modern User Table Styles */
-.modern-user-table .ant-table {
-  border-radius: 12px !important;
-  overflow: hidden !important;
-}
-
-.modern-user-table .ant-table-thead > tr > th {
-  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%) !important;
-  border-bottom: 2px solid #e2e8f0 !important;
-  font-weight: 600 !important;
-  color: #334155 !important;
-  padding: 16px 12px !important;
-  font-size: 13px !important;
-}
-
-.modern-user-table .ant-table-tbody > tr > td {
-  padding: 12px !important;
-  border-bottom: 1px solid #f1f5f9 !important;
-  vertical-align: middle !important;
-}
-
-.modern-user-table .ant-table-tbody > tr:hover > td {
-  background-color: #f8fafc !important;
-}
-
-.modern-user-table .ant-table-tbody > tr.ant-table-row-selected > td {
-  background-color: #eff6ff !important;
-}
-
-/* Action button hover effects */
-.modern-user-table .ant-btn-text:hover {
-  transform: translateY(-1px) !important;
-  transition: all 0.2s ease !important;
-}
-
-/* Tag styling improvements */
-.modern-user-table .ant-tag {
-  border-radius: 6px !important;
-  font-weight: 500 !important;
-  font-size: 11px !important;
-  padding: 2px 8px !important;
-}
-
-/* Avatar improvements */
-.modern-user-table .ant-avatar {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
-}
-
-/* Responsive table wrapper */
-@media (max-width: 768px) {
-  .modern-user-table .ant-table-thead > tr > th {
-    padding: 12px 8px !important;
-    font-size: 12px !important;
-  }
-
-  .modern-user-table .ant-table-tbody > tr > td {
-    padding: 8px !important;
-  }
-}
-
 /* Footer Links */
 footer a {
   position: relative;
@@ -238,10 +172,4 @@ footer a:hover::after {
 
 .animate-pulse {
   animation: heartbeat 1.5s ease-in-out infinite;
-}
-
-/* Footer bottom border gradient */
-.footer-border {
-  background: linear-gradient(90deg, transparent, #60a5fa, transparent);
-  height: 1px;
 }

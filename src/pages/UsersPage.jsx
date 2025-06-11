@@ -17,6 +17,7 @@ const UsersPage = () => {
   const [pageSize, setPageSize] = useState(10);
   const [totalPage, setTotalPage] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
+
   const fetchData = useCallback(async () => {
     const res = await fetchAllUserAPI(currPage, pageSize);
     setCurrPage(+res.data.meta.current);

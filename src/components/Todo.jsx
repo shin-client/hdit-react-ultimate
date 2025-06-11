@@ -13,7 +13,7 @@ const Todo = () => {
     setTodoList([...todoList, newTodo]);
   };
   return (
-    <div className="container mx-auto flex h-[100vh] w-2xl flex-col items-center justify-center gap-4">
+    <div className="mx-auto my-10 flex w-2xl flex-col items-center justify-center gap-4">
       <p className="bg-gradient-to-bl from-violet-500 to-fuchsia-500 bg-clip-text text-6xl font-bold text-transparent">
         Todo list
       </p>
