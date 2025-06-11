@@ -37,6 +37,10 @@
   color: rgba(255, 255, 255, 0.85) !important;
 }
 
+.ant-btn-icon.ant-btn-loading-icon {
+  display: flex;
+}
+
 /* User Detail Drawer Responsive */
 @media (max-width: 768px) {
   .user-detail-drawer .ant-drawer {

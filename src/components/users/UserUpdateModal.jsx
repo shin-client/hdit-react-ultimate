@@ -14,6 +14,7 @@ const UserUpdateModal = ({
   const [id, setId] = useState("");
   const [fullName, setFullName] = useState("");
   const [phone, setPhone] = useState("");
+  const [isUpdateUserLoading, setIsUpdateUserLoading] = useState(false);
 
   useEffect(() => {
     if (currUserData) {
@@ -24,6 +25,7 @@ const UserUpdateModal = ({
   }, [currUserData]);
 
   const handleUpdateUser = async () => {
+    setIsUpdateUserLoading(true);
     const res = await updateUserAPI(id, fullName, phone);
     if (res?.data) {
       openNotification("success", "Update user", "Success!");
@@ -36,6 +38,7 @@ const UserUpdateModal = ({
         JSON.stringify(res.message),
       );
     }
+    setIsUpdateUserLoading(false);
   };
 
   const resetAndCloseModal = () => {
@@ -54,6 +57,7 @@ const UserUpdateModal = ({
         onOk={() => handleUpdateUser()}
         onCancel={() => resetAndCloseModal()}
         okText={"Update"}
+        okButtonProps={{ loading: isUpdateUserLoading }}
         centered
       >
         <div className="flex flex-col gap-4">

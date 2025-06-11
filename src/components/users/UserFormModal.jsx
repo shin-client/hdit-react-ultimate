@@ -8,18 +8,20 @@ import {
 } from "@ant-design/icons";
 import { Form, Input, Modal } from "antd";
 import { openNotification } from "@libs/utils";
+import { useState } from "react";
 
 const UserFormModal = ({ fetchData, isModalOpen, setIsModalOpen }) => {
   const [form] = Form.useForm();
+  const [isCreateLoading, setIsCreateLoading] = useState(false);
 
   const handleCreateUser = async (values) => {
+    setIsCreateLoading(true);
     const res = await createUserAPI(
       values.fullName,
       values.email,
       values.password,
       values.phone,
     );
-
     if (res?.data) {
       openNotification(
         "success",
@@ -35,6 +37,7 @@ const UserFormModal = ({ fetchData, isModalOpen, setIsModalOpen }) => {
         Array.isArray(res?.message) ? res.message.join("; ") : res?.message,
       );
     }
+    setIsCreateLoading(false);
   };
 
   const resetAndCloseModal = () => {
@@ -58,6 +61,7 @@ const UserFormModal = ({ fetchData, isModalOpen, setIsModalOpen }) => {
       onCancel={resetAndCloseModal}
       okText="Create User"
       cancelText="Cancel"
+      okButtonProps={{ loading: isCreateLoading }}
       centered
       width={500}
       className="user-form-modal"
