@@ -2,6 +2,7 @@ import {
   UsergroupAddOutlined,
   UserOutlined,
   PlusOutlined,
+  BookOutlined,
 } from "@ant-design/icons";
 import AddNewBook from "@components/books/AddNewBook";
 import BookTable from "@components/books/BookTable";
@@ -27,7 +28,7 @@ const Bookspage = () => {
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
               <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-blue-100">
-                <UsergroupAddOutlined className="text-2xl text-blue-600" />
+                <BookOutlined className="text-2xl text-blue-600" />
               </div>
               <div>
                 <Title level={2} className="mb-0 text-gray-800">
@@ -55,7 +56,7 @@ const Bookspage = () => {
               <Statistic
                 title="Total Books"
                 value={totalPage || 0}
-                prefix={<UserOutlined className="text-blue-600" />}
+                prefix={<BookOutlined className="text-blue-600" />}
                 valueStyle={{
                   color: "#1890ff",
                   fontSize: "24px",

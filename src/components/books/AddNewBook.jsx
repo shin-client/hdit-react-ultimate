@@ -7,6 +7,8 @@ import {
   UserAddOutlined,
   BookOutlined,
   UploadOutlined,
+  MoneyCollectOutlined,
+  FieldNumberOutlined,
 } from "@ant-design/icons";
 import {
   Button,
@@ -95,7 +97,7 @@ const AddNewBook = () => {
       title={
         <div className="flex items-center space-x-2">
           <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-100">
-            <UserAddOutlined className="text-blue-600" />
+            <BookOutlined className="text-blue-600" />
           </div>
           <span className="text-lg font-semibold text-gray-800">
             Create New Book
@@ -190,7 +192,7 @@ const AddNewBook = () => {
           rules={[{ required: true, message: "Please enter price!" }]}
         >
           <InputNumber
-            prefix={<LockOutlined className="text-gray-400" />}
+            prefix={<MoneyCollectOutlined className="text-gray-400" />}
             placeholder="Enter price"
             min={0}
             style={{ width: "100%" }}
@@ -202,7 +204,7 @@ const AddNewBook = () => {
           rules={[{ required: true, message: "Please enter quantity!" }]}
         >
           <InputNumber
-            prefix={<PhoneOutlined className="text-gray-400" />}
+            prefix={<FieldNumberOutlined className="text-gray-400" />}
             placeholder="Enter quantity"
             min={0}
             precision={0}

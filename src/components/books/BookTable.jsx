@@ -260,7 +260,14 @@ const BookTable = () => {
             >
               <Option value="ALL">All Roles</Option>
               <Option value="Arts">Arts</Option>
-              <Option value="Teen">Teen</Option>
+              <Option value="History">History</Option>
+              <Option value="Comics">Comics</Option>
+              <Option value="Business">Business</Option>
+              <Option value="Music">Music</Option>
+              <Option value="Cooking">Cooking</Option>
+              <Option value="Entertainment">Entertainment</Option>
+              <Option value="Sports">Sports</Option>
+              <Option value="Travel">Travel</Option>
             </Select>
           </div>
         </div>

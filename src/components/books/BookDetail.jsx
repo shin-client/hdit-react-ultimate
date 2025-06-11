@@ -100,7 +100,7 @@ const BookDetail = () => {
       title={
         <div className="flex items-center space-x-3">
           <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-blue-100">
-            <UserOutlined className="text-lg text-blue-600" />
+            <BookOutlined className="text-lg text-blue-600" />
           </div>
           <div>
             <Title level={4} className="mb-0 text-gray-800">
