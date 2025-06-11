@@ -81,7 +81,14 @@ const fetchAllBookAPI = (current, pageSize) => {
   return axios.get(URL);
 };
 
-const createBookAPI = (thumbnail, mainText, author, price, quantity, category) => {
+const createBookAPI = (
+  thumbnail,
+  mainText,
+  author,
+  price,
+  quantity,
+  category,
+) => {
   const URL = "/api/v1/book";
   const data = {
     thumbnail: thumbnail,
@@ -136,5 +143,3 @@ export {
   deleteBookAPI,
   updateBookAPI,
 };
-
-// test
