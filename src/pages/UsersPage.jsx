@@ -17,13 +17,16 @@ const UsersPage = () => {
   const [pageSize, setPageSize] = useState(10);
   const [totalPage, setTotalPage] = useState();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const fetchData = useCallback(async () => {
+    setIsLoading(true);
     const res = await fetchAllUserAPI(currPage, pageSize);
     setCurrPage(+res.data.meta.current);
     setPageSize(+res.data.meta.pageSize);
     setTotalPage(res.data.meta.total);
     setUserData(res.data.result);
+    setIsLoading(false);
   }, [currPage, pageSize]);
 
   useEffect(() => {
@@ -116,6 +119,7 @@ const UsersPage = () => {
           totalPage={totalPage}
           setCurrPage={setCurrPage}
           setPageSize={setPageSize}
+          fetchDataLoading={isLoading}
         />
       </div>
     </div>

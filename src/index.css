@@ -116,7 +116,7 @@ footer a {
 }
 
 footer a::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 0;
   height: 1px;

@@ -39,6 +39,7 @@ const UserTable = ({
   totalPage,
   setCurrPage,
   setPageSize,
+  fetchDataLoading,
 }) => {
   const [isModalUpdateOpen, setIsModalUpdateOpen] = useState(false);
   const [isUserDetailOpen, setIsUserDetailOpen] = useState(false);
@@ -338,7 +339,7 @@ const UserTable = ({
           columns={columns}
           dataSource={filteredData}
           rowKey="_id"
-          loading={loading}
+          loading={loading || fetchDataLoading}
           className="modern-user-table"
           pagination={{
             current: currPage,

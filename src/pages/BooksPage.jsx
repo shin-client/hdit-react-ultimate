@@ -1,9 +1,4 @@
-import {
-  UsergroupAddOutlined,
-  UserOutlined,
-  PlusOutlined,
-  BookOutlined,
-} from "@ant-design/icons";
+import { PlusOutlined, BookOutlined } from "@ant-design/icons";
 import AddNewBook from "@components/books/AddNewBook";
 import BookTable from "@components/books/BookTable";
 import { useBookContext } from "@context/BookProvider";

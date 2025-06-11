@@ -1,10 +1,6 @@
 import { createBookAPI, handleUploadFile } from "@services/apiService";
 import {
-  LockOutlined,
-  MailOutlined,
-  PhoneOutlined,
   UserOutlined,
-  UserAddOutlined,
   BookOutlined,
   UploadOutlined,
   MoneyCollectOutlined,
