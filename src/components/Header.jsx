@@ -35,12 +35,10 @@ const Header = () => {
     useAuthContext();
 
   useEffect(() => {
-    const path = location.pathname;
-    if (path === "/") setCurrentPage("home");
-    else if (path.startsWith("/users")) setCurrentPage("users");
-    else if (path.startsWith("/books")) setCurrentPage("books");
-    else if (path.startsWith("/login")) setCurrentPage("login");
-    else if (path.startsWith("/register")) setCurrentPage("register");
+    const allPages = ["users", "books", "login", "register", "about"];
+    const currPage = allPages.find((item) => `/${item}` === location.pathname);
+    if (currPage) setCurrentPage(currPage);
+    else setCurrentPage("home");
   }, [location]);
 
   const onClick = (e) => {
