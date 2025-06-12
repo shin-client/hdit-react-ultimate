@@ -158,6 +158,7 @@ const UserTable = ({
             className={`cursor-pointer text-xs`}
             onClick={() => {
               navigator.clipboard.writeText(id);
+              message.success("copied");
             }}
           >
             {id ? `${id.substring(0, 12)}...` : "N/A"}
